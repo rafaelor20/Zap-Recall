@@ -1,222 +1,61 @@
-body{
-    background: #E5E5E5;
-}
-
-.caixa-teste{
-    background-color: blue;
-    height: 200px;
-}
-
-.caixa-topo{
-    position: fixed;
-    width: 100%;
-    height: 92px;
-    left: 0px;
-    top: 0px;
-    z-index: 1;
-    background: #CF2B2B;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.texto-caixa-topo{
-    margin-left: 21px;
-    color: #FFFFFF;
-    font-style: normal;
-    font-weight: 400;
-}
-
-
-
-.titulo-pagina{
-    font-family: 'Righteous',cursive;
-    font-size: 44px;
-    line-height: 55px;
-    letter-spacing: -0.012em;
-}
-
-.subtitulo-pagina{
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    line-height: 21px;
-    
-}
-
-.caixa-pagina{
-    margin-top: 112px;
-    margin-bottom: 112px;
-    margin-left: 19px;
-}
-
-.caixa-escolhe-comida{
-    margin-left: 1px;
-    display: flex;
-    justify-content: flex-start;
-    overflow-x: scroll;
-}
-
-.titulo-escolhe-comida{
-    font-family: 'Righteous',cursive;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 32px;
-    letter-spacing: 0.018em;
-    color: #333333;
-    margin-top: 20px;
-}
-
-.caixa-comida{
-    width: 172px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.25);
+body {
     box-sizing: border-box;
-    border: 5px white solid;
-    border-radius: 9px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding-left: 5px;
-    margin-top: 10px;
-    margin-right: 15px;
+    width: 375px;
+    height: 667px;
+    background-color: #FB6B6B;
+    border: 1px solid #DBDBDB;
 }
 
-.caixa-borda-verde-pf{
-    border: 5px solid #32B72F;
-}
-
-.caixa-borda-verde-bebida{
-    border: 5px solid #32B72F;
-}
-
-.caixa-borda-verde-sobremesa{
-    border: 5px solid #32B72F;
-}
-
-.caixa-img-comida{
-    width: 144px;
-    height: 87px;
-}
-
-.imagem{
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-}
-
-.caixa-titulo-comida{
-    width: 139px;
-    height: 23px;
-}
-
-.titulo-comida{
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    color: #333333;
-}
-
-.caixa-descricao-comida{
-    width: 147px;
-    height: 39px;
-}
-
-.descricao-comida{
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 18px;
-    color: #A6A6A6;
-}
-
-.caixa-preco-img{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.selecionado-img{
-    width: 16px;
-    height: 16px;
-    margin-right: 3px;
+.hidden {
     display: none;
 }
 
-.ativa-selecionado-img{
+.top-bar {
+    height: 160px;
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.caixa-preco{
-    width: 66px;
-    height: 19px;
+.logo {
+    width: 52px;
+height: 60px;
 }
 
-.fonte-preço{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #000000;
+.title {
+    width: 203.17px;
+height: 44px;
+font-family: 'Righteous', sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 36px;
+line-height: 45px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.012em;
+color: #FFFFFF;
+transform: rotate(0.58deg);
 }
 
-.caixa-img-verificado{
-    width: 20px;
-    height: 19px;
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.caixa-prato-feito{
-    height: 216px;
-}
-
-.caixa-bebida{
-    height: 202px;
-}
-
-.caixa-sobremesa{
-    height: 197px;
-}
-
-.caixa-baixo{
-    height: 92px;
-    width: 100%;
-    position: fixed;
+.bottom-bar {
+    position: absolute;
     bottom: 0px;
     left: 0px;
-    background-color: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 375px;
+height: 70px;
+background: #FFFFFF;
+box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
-.caixa-texto-baixo{
-    width: 90%;
-    height: 61px;
-    background: #CBCBCB;
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.fonte-texto-baixo{
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
-    text-align: center;
-    letter-spacing: 0.018em;
-    color: #FFFFFF;
-    text-align: center;
-}
-
-.caixa-texto-baixo-verde{
-    background-color: #32B72F;
+.font-bottom-text {
+    font-family: 'Recursive', sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+color: #333333;
 }
