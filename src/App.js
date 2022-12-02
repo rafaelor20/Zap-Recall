@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-//import './App.css';
 import TopBar from './topBar';
+import ContainerQuestion from './ContainerQuestion';
 
 function App() {
   return (
     <ScreenContainer>
       <TopBar />
+      <ContainerQuestion/>
     </ScreenContainer>
   );
 }
