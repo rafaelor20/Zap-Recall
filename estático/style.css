@@ -11,17 +11,20 @@ body {
 }
 
 .green-background {
-    all: initial;
     background-color: #2FBE34;
 }
 
-.orange-background {
+.yellow-background {
     background-color: #FF922E;
 }
 
 .red-background {
     background-color: #FF3030;
 }
+
+.grey-background {
+    background-color: #333333;
+} 
 
 .top-bar {
     height: 160px;

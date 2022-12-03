@@ -1,12 +1,15 @@
 import styled from 'styled-components';
+import "./assets/css/reset.css"
 import TopBar from './topBar';
 import ContainerQuestion from './ContainerQuestion';
+import BottomBar from './BottomBar';
 
 function App() {
   return (
     <ScreenContainer>
       <TopBar />
-      <ContainerQuestion/>
+      <ContainerQuestion />
+      <BottomBar />
     </ScreenContainer>
   );
 }
@@ -17,7 +20,7 @@ export default App;
 const ScreenContainer = styled.div`
   background-color: #FB6B6B;
   width: 100vw;
-  min-height: 100vh;
+  min-height: 667px;
   display: flex;
   flex-direction: column;
   align-items: center;
