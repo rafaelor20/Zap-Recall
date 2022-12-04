@@ -9,7 +9,7 @@ export default function BottomBar() {
 }
 
 const BottomBarDiv = styled.div`
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     left: 0px;
     width: 375px;

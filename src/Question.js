@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export default function Question() {
+export default function Question(props) {
     return (
         <>
             <ClosedQuestion>
@@ -9,23 +9,23 @@ export default function Question() {
             </ClosedQuestion>
             <OpenQuestion>
                 <TextQuestion>
-                    O que é JSX?
+                    {props.question}
                 </TextQuestion>
             </OpenQuestion>
             <OpenQuestion>
                 <TextQuestion>
-                    JSX é uma sintaxe para escrever HTML dentro do JS
+                    {props.answer}
                 </TextQuestion>
                 <Buttons>            
-                    <ButtonAnswer>
+                    <RedButtonAnswer>
                         <FontButtonAnswer>Não lembrei</FontButtonAnswer>
-                    </ButtonAnswer>
-                    <ButtonAnswer>
+                    </RedButtonAnswer>
+                    <YellowButtonAnswer>
                         <FontButtonAnswer>Quase não lembrei</FontButtonAnswer>
-                    </ButtonAnswer>
-                    <ButtonAnswer>
+                    </YellowButtonAnswer>
+                    <GreenButtonAnswer>
                         <FontButtonAnswer>Zap!</FontButtonAnswer>
-                    </ButtonAnswer>
+                    </GreenButtonAnswer>
                 </Buttons>
 
             </OpenQuestion>
@@ -80,7 +80,6 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 `
-
 const ButtonAnswer = styled.button`
     width: 86px;
     height: 38px;
@@ -89,6 +88,18 @@ const ButtonAnswer = styled.button`
     justify-content: center;
     align-items:center;
     padding: 0px 10px;
+`
+
+const GreenButtonAnswer = styled(ButtonAnswer)`
+    background-color: #2FBE34;
+`
+
+const YellowButtonAnswer = styled(ButtonAnswer)`
+    background-color: #FF922E;
+`
+
+const RedButtonAnswer = styled(ButtonAnswer)`
+    background-color: #FF3030;
 `
 
 const FontButtonAnswer = styled.p`

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import Question from './Question';
+import deck from "./cards.js"
 
 export default function ContainerQuestion(){
     return (
         <Questions>
-            <Question/>
+            {deck.map(Question)}
         </Questions>
     )
 }
@@ -17,4 +18,6 @@ const Questions = styled.div`
     justify-content: center;
     align-items: center;
 `
-
+function cards(deck){
+    return(<>deck.map(Question)</>)
+}

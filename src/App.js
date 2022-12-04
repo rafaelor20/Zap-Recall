@@ -4,6 +4,7 @@ import TopBar from './topBar';
 import ContainerQuestion from './ContainerQuestion';
 import BottomBar from './BottomBar';
 
+
 function App() {
   return (
     <ScreenContainer>
@@ -20,7 +21,7 @@ export default App;
 const ScreenContainer = styled.div`
   background-color: #FB6B6B;
   width: 100vw;
-  min-height: 667px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
