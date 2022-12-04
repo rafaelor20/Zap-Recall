@@ -1,18 +1,22 @@
 import styled from 'styled-components';
+import logoPlay from './assets/img/seta_play.png' 
+import logoTurn from './assets/img/seta_virar.png' 
 
 
-export default function Question(props) {
+export default function Question(props, index) {
     return (
         <>
             <ClosedQuestion>
-                <TextQuestion>Pergunta 1</TextQuestion>
+                <TextQuestion>Pergunta {(index+1)}</TextQuestion>
+                <LogoClosedQuestion src={logoPlay}/>
             </ClosedQuestion>
-            <OpenQuestion>
+            <FrontQuestion>
                 <TextQuestion>
                     {props.question}
+                    <LogoTurnQuestion src={logoTurn}/>
                 </TextQuestion>
-            </OpenQuestion>
-            <OpenQuestion>
+            </FrontQuestion>
+            <BackQuestion>
                 <TextQuestion>
                     {props.answer}
                 </TextQuestion>
@@ -28,7 +32,7 @@ export default function Question(props) {
                     </GreenButtonAnswer>
                 </Buttons>
 
-            </OpenQuestion>
+            </BackQuestion>
         </>
     )
 }
@@ -46,6 +50,12 @@ const ClosedQuestion = styled.div`
   justify-content: space-between;
 `
 
+const LogoClosedQuestion = styled.img`
+    width: 20px;
+    height: 23px;
+    color: #333333;
+`
+
 const OpenQuestion = styled.div`
   width: 300px;
   margin: 12px;
@@ -61,9 +71,27 @@ const OpenQuestion = styled.div`
   line-height: 22px;
   color: #333333;
   position: relative;
-  display: flex;
+  
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+`
+
+const FrontQuestion = styled(OpenQuestion)`
+    diplay: flex;
+`
+
+const BackQuestion = styled(OpenQuestion)`
+    display: flex;
+`
+
+const LogoTurnQuestion = styled.img`
+    width: 20px;
+    height: 23px;
+    color: #333333;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
 `
 
 const TextQuestion = styled.p`

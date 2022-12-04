@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export default function BottomBar() {
+export default function BottomBar(props) {
     return (
         <BottomBarDiv>
-            <FontBottomBar>0/4 CONCLUÍDOS</FontBottomBar>
+            <FontBottomBar>0/{props.number} CONCLUÍDOS</FontBottomBar>
         </BottomBarDiv>
     )
 }

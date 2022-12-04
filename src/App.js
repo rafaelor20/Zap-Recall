@@ -3,14 +3,15 @@ import "./assets/css/reset.css"
 import TopBar from './topBar';
 import ContainerQuestion from './ContainerQuestion';
 import BottomBar from './BottomBar';
+import deck from "./cards.js"
 
 
 function App() {
   return (
     <ScreenContainer>
       <TopBar />
-      <ContainerQuestion />
-      <BottomBar />
+      <ContainerQuestion deck={deck}/>
+      <BottomBar number={deck.length}/>
     </ScreenContainer>
   );
 }
