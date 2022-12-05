@@ -1,69 +1,69 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import logoPlay from './assets/img/seta_play.png' 
-import logoTurn from './assets/img/seta_virar.png' 
+import logoPlay from './assets/img/seta_play.png'
+import logoTurn from './assets/img/seta_virar.png'
 
 
 export default function Question(props, index) {
     const [displayClosedQuestion, setDisplayClosedQuestion] = useState('flex');
-    const stateDisplayClosedQuestion = {displayClosedQuestion: displayClosedQuestion, setDisplayClosedQuestion: setDisplayClosedQuestion};
+    const stateDisplayClosedQuestion = { displayClosedQuestion: displayClosedQuestion, setDisplayClosedQuestion: setDisplayClosedQuestion };
     const [displayFrontQuestion, setDisplayFrontQuestion] = useState('none');
-    const stateDisplayFrontQuestion = {displayFrontQuestion: displayFrontQuestion, setDisplayFrontQuestion: setDisplayFrontQuestion};
+    const stateDisplayFrontQuestion = { displayFrontQuestion: displayFrontQuestion, setDisplayFrontQuestion: setDisplayFrontQuestion };
     const [displayBackQuestion, setDisplayBackQuestion] = useState('none');
-    const stateDisplayBackQuestion = {displayBackQuestion: displayBackQuestion, setDisplayBackQuestion: setDisplayBackQuestion};
+    const stateDisplayBackQuestion = { displayBackQuestion: displayBackQuestion, setDisplayBackQuestion: setDisplayBackQuestion };
     const [displayFinishedQuestion, setDisplayFinishedQuestion] = useState('none');
-    const stateDisplayFinishedQuestion = {displayFinishedQuestion: displayFinishedQuestion, setDisplayFinishedQuestion: setDisplayFinishedQuestion};
+    const stateDisplayFinishedQuestion = { displayFinishedQuestion: displayFinishedQuestion, setDisplayFinishedQuestion: setDisplayFinishedQuestion };
     return (
         <div data-test="flashcard">
             <ClosedQuestion stateDisplayClosedQuestion={stateDisplayClosedQuestion}>
-                <TextQuestion data-identifier="flashcard-text">Pergunta {(index+1)}</TextQuestion>
-                <LogoClosedQuestion data-identifier="play-btn" src={logoPlay} onClick={()=>displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion)}/>
+                <TextQuestion data-identifier="flashcard-text">Pergunta {(index + 1)}</TextQuestion>
+                <LogoClosedQuestion data-identifier="play-btn" src={logoPlay} onClick={() => displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion)} />
             </ClosedQuestion>
             <FrontQuestion stateDisplayFrontQuestion={stateDisplayFrontQuestion}>
                 <TextQuestion data-identifier="flashcard-text">
                     {props.question}
-                    <LogoTurnQuestion data-identifier="turn-btn" src={logoTurn} onClick={()=>displayBackCard(stateDisplayFrontQuestion, stateDisplayBackQuestion)}/>
+                    <LogoTurnQuestion data-identifier="turn-btn" src={logoTurn} onClick={() => displayBackCard(stateDisplayFrontQuestion, stateDisplayBackQuestion)} />
                 </TextQuestion>
             </FrontQuestion>
             <BackQuestion stateDisplayBackQuestion={stateDisplayBackQuestion}>
                 <TextQuestion data-identifier="flashcard-text">
                     {props.answer}
                 </TextQuestion>
-                <Buttons>            
-                    <RedButtonAnswer onClick={()=>displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
+                <Buttons>
+                    <RedButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
                         <FontButtonAnswer>Não lembrei</FontButtonAnswer>
                     </RedButtonAnswer>
-                    <YellowButtonAnswer onClick={()=>displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
+                    <YellowButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
                         <FontButtonAnswer>Quase não lembrei</FontButtonAnswer>
                     </YellowButtonAnswer>
-                    <GreenButtonAnswer onClick={()=>displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
+                    <GreenButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
                         <FontButtonAnswer>Zap!</FontButtonAnswer>
                     </GreenButtonAnswer>
                 </Buttons>
             </BackQuestion>
             <FinishedQuestion stateDisplayFinishedQuestion={stateDisplayFinishedQuestion}>
-                <TextQuestion data-identifier="flashcard-text">Pergunta {(index+1)}</TextQuestion>
+                <TextQuestion data-identifier="flashcard-text">Pergunta {(index + 1)}</TextQuestion>
                 <LogoClosedQuestion data-identifier="play-btn" src={logoPlay} />
             </FinishedQuestion>
         </div>
     )
 }
 
-function displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion){
+function displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion) {
     const setDisplayClosedQuestion = stateDisplayClosedQuestion.setDisplayClosedQuestion;
     setDisplayClosedQuestion('none');
     const setDisplayFrontQuestion = stateDisplayFrontQuestion.setDisplayFrontQuestion;
     setDisplayFrontQuestion('flex');
 }
 
-function displayBackCard(stateDisplayFrontQuestion, stateDisplayBackQuestion){
+function displayBackCard(stateDisplayFrontQuestion, stateDisplayBackQuestion) {
     const setDisplayFrontQuestion = stateDisplayFrontQuestion.setDisplayFrontQuestion;
     setDisplayFrontQuestion('none');
     const setDisplayBackQuestion = stateDisplayBackQuestion.setDisplayBackQuestion;
     setDisplayBackQuestion('flex');
 }
 
-function displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion){
+function displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion) {
     const setDisplayBackQuestion = stateDisplayBackQuestion.setDisplayBackQuestion;
     setDisplayBackQuestion('none');
     const setDisplayFinishedQuestion = stateDisplayFinishedQuestion.setDisplayFinishedQuestion;
@@ -124,10 +124,6 @@ const BackQuestion = styled(OpenQuestion)`
     display: ${props => props.stateDisplayBackQuestion.displayBackQuestion};
 `
 
-
-
-
-
 const LogoTurnQuestion = styled.img`
     width: 20px;
     height: 23px;
@@ -136,7 +132,6 @@ const LogoTurnQuestion = styled.img`
     bottom: 15px;
     right: 15px;
 `
-
 const TextQuestion = styled.p`
   font-family: 'Recursive';
   font-style: normal;
