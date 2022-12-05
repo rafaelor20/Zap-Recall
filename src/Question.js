@@ -2,14 +2,15 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import logoPlay from './assets/img/seta_play.png'
 import logoTurn from './assets/img/seta_virar.png'
+import right from './assets/img/icone_certo.png'
+import almost from './assets/img/icone_quase.png'
+import wrong from './assets/img/icone_erro.png'
 
 
 export default function Question(props, index) {
-    console.log(props);
     const setCardsDone = props.cardsData.setCardsDone;
-    console.log(setCardsDone);
     const cardsDone = props.cardsData.cardsDone;
-    console.log(cardsDone);
+    const [imgAnswer, setImgAnswer] = useState(logoPlay)
     const [displayClosedQuestion, setDisplayClosedQuestion] = useState('flex');
     const stateDisplayClosedQuestion = { displayClosedQuestion: displayClosedQuestion, setDisplayClosedQuestion: setDisplayClosedQuestion };
     const [displayFrontQuestion, setDisplayFrontQuestion] = useState('none');
@@ -35,23 +36,38 @@ export default function Question(props, index) {
                     {props.answer}
                 </TextQuestion>
                 <Buttons>
-                    <RedButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
+                    <RedButtonAnswer onClick={() => wrongAnswer(wrong, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
                         <FontButtonAnswer>Não lembrei</FontButtonAnswer>
                     </RedButtonAnswer>
-                    <YellowButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
+                    <YellowButtonAnswer onClick={() => almostAnswer(almost, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
                         <FontButtonAnswer>Quase não lembrei</FontButtonAnswer>
                     </YellowButtonAnswer>
-                    <GreenButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone )}>
+                    <GreenButtonAnswer onClick={() => rigthAnswer(right, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
                         <FontButtonAnswer>Zap!</FontButtonAnswer>
                     </GreenButtonAnswer>
                 </Buttons>
             </BackQuestion>
             <FinishedQuestion stateDisplayFinishedQuestion={stateDisplayFinishedQuestion}>
                 <TextQuestion data-identifier="flashcard-text">Pergunta {(index + 1)}</TextQuestion>
-                <LogoClosedQuestion data-identifier="play-btn" src={logoPlay} />
+                <LogoClosedQuestion data-identifier="play-btn" src={imgAnswer} />
             </FinishedQuestion>
         </div>
     )
+}
+
+function rigthAnswer(imgAnswer, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone){
+    setImgAnswer(imgAnswer);
+    displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)
+}
+
+function almostAnswer(imgAnswer, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone){
+    setImgAnswer(imgAnswer);
+    displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)
+}
+
+function wrongAnswer(imgAnswer, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone){
+    setImgAnswer(imgAnswer);
+    displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)
 }
 
 function displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion) {
