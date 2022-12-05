@@ -15,7 +15,7 @@ export default function Question(props, index) {
         <>
             <ClosedQuestion stateDisplayClosedQuestion={stateDisplayClosedQuestion}>
                 <TextQuestion>Pergunta {(index+1)}</TextQuestion>
-                <LogoClosedQuestion src={logoPlay}/>
+                <LogoClosedQuestion src={logoPlay} onClick={()=>displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion)}/>
             </ClosedQuestion>
             <FrontQuestion stateDisplayFrontQuestion={stateDisplayFrontQuestion}>
                 <TextQuestion>
@@ -42,6 +42,13 @@ export default function Question(props, index) {
             </BackQuestion>
         </>
     )
+}
+
+function displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion){
+    const setDisplayClosedQuestion = stateDisplayClosedQuestion.setDisplayClosedQuestion;
+    setDisplayClosedQuestion('none');
+    const setDisplayFrontQuestion = stateDisplayFrontQuestion.setDisplayFrontQuestion;
+    setDisplayFrontQuestion('flex');
 }
 
 const ClosedQuestion = styled.div`
