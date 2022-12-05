@@ -11,6 +11,8 @@ export default function Question(props, index) {
     const stateDisplayFrontQuestion = {displayFrontQuestion: displayFrontQuestion, setDisplayFrontQuestion: setDisplayFrontQuestion};
     const [displayBackQuestion, setDisplayBackQuestion] = useState('none');
     const stateDisplayBackQuestion = {displayBackQuestion: displayBackQuestion, setDisplayBackQuestion: setDisplayBackQuestion};
+    const [displayFinishedQuestion, setDisplayFinishedQuestion] = useState('none');
+    const stateDisplayFinishedQuestion = {displayFinishedQuestion: displayFinishedQuestion, setDisplayFinishedQuestion: setDisplayFinishedQuestion};
     return (
         <div data-test="flashcard">
             <ClosedQuestion stateDisplayClosedQuestion={stateDisplayClosedQuestion}>
@@ -28,18 +30,21 @@ export default function Question(props, index) {
                     {props.answer}
                 </TextQuestion>
                 <Buttons>            
-                    <RedButtonAnswer>
+                    <RedButtonAnswer onClick={()=>displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
                         <FontButtonAnswer>Não lembrei</FontButtonAnswer>
                     </RedButtonAnswer>
-                    <YellowButtonAnswer>
+                    <YellowButtonAnswer onClick={()=>displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
                         <FontButtonAnswer>Quase não lembrei</FontButtonAnswer>
                     </YellowButtonAnswer>
-                    <GreenButtonAnswer>
+                    <GreenButtonAnswer onClick={()=>displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
                         <FontButtonAnswer>Zap!</FontButtonAnswer>
                     </GreenButtonAnswer>
                 </Buttons>
-
             </BackQuestion>
+            <FinishedQuestion stateDisplayFinishedQuestion={stateDisplayFinishedQuestion}>
+                <TextQuestion data-identifier="flashcard-text">Pergunta {(index+1)}</TextQuestion>
+                <LogoClosedQuestion data-identifier="play-btn" src={logoPlay} />
+            </FinishedQuestion>
         </div>
     )
 }
@@ -58,7 +63,14 @@ function displayBackCard(stateDisplayFrontQuestion, stateDisplayBackQuestion){
     setDisplayBackQuestion('flex');
 }
 
-const ClosedQuestion = styled.div`
+function displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion){
+    const setDisplayBackQuestion = stateDisplayBackQuestion.setDisplayBackQuestion;
+    setDisplayBackQuestion('none');
+    const setDisplayFinishedQuestion = stateDisplayFinishedQuestion.setDisplayFinishedQuestion;
+    setDisplayFinishedQuestion('flex');
+}
+
+const SmalldQuestion = styled.div`
   width: 300px;
   height: 35px;
   background-color: #FFFFFF;
@@ -66,9 +78,16 @@ const ClosedQuestion = styled.div`
   padding: 15px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  display: ${props => props.stateDisplayClosedQuestion.displayClosedQuestion};
+  
   align-items: center;
   justify-content: space-between;
+`
+const ClosedQuestion = styled(SmalldQuestion)`
+    display: ${props => props.stateDisplayClosedQuestion.displayClosedQuestion};
+`
+
+const FinishedQuestion = styled(SmalldQuestion)`
+    display: ${props => props.stateDisplayFinishedQuestion.displayFinishedQuestion};
 `
 
 const LogoClosedQuestion = styled.img`
@@ -104,6 +123,8 @@ const FrontQuestion = styled(OpenQuestion)`
 const BackQuestion = styled(OpenQuestion)`
     display: ${props => props.stateDisplayBackQuestion.displayBackQuestion};
 `
+
+
 
 
 
