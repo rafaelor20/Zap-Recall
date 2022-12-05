@@ -10,7 +10,8 @@ import wrong from './assets/img/icone_erro.png'
 export default function Question(props, index) {
     const setCardsDone = props.cardsData.setCardsDone;
     const cardsDone = props.cardsData.cardsDone;
-    const [imgAnswer, setImgAnswer] = useState(logoPlay)
+    const [fontColor, setFontColor] = useState('#333333');
+    const [imgAnswer, setImgAnswer] = useState(logoPlay);
     const [displayClosedQuestion, setDisplayClosedQuestion] = useState('flex');
     const stateDisplayClosedQuestion = { displayClosedQuestion: displayClosedQuestion, setDisplayClosedQuestion: setDisplayClosedQuestion };
     const [displayFrontQuestion, setDisplayFrontQuestion] = useState('none');
@@ -22,50 +23,53 @@ export default function Question(props, index) {
     return (
         <div data-test="flashcard">
             <ClosedQuestion stateDisplayClosedQuestion={stateDisplayClosedQuestion}>
-                <TextQuestion data-identifier="flashcard-text">Pergunta {(index + 1)}</TextQuestion>
+                <TextQuestion color={fontColor} data-identifier="flashcard-text">Pergunta {(index + 1)}</TextQuestion>
                 <LogoClosedQuestion data-identifier="play-btn" src={logoPlay} onClick={() => displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion)} />
             </ClosedQuestion>
             <FrontQuestion stateDisplayFrontQuestion={stateDisplayFrontQuestion}>
-                <TextQuestion data-identifier="flashcard-text">
+                <TextQuestion color={fontColor} data-identifier="flashcard-text">
                     {props.question}
                     <LogoTurnQuestion data-identifier="turn-btn" src={logoTurn} onClick={() => displayBackCard(stateDisplayFrontQuestion, stateDisplayBackQuestion)} />
                 </TextQuestion>
             </FrontQuestion>
             <BackQuestion stateDisplayBackQuestion={stateDisplayBackQuestion}>
-                <TextQuestion data-identifier="flashcard-text">
+                <TextQuestion color={fontColor} data-identifier="flashcard-text">
                     {props.answer}
                 </TextQuestion>
                 <Buttons>
-                    <RedButtonAnswer onClick={() => wrongAnswer(wrong, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
+                    <RedButtonAnswer onClick={() => wrongAnswer(setFontColor, wrong, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
                         <FontButtonAnswer>Não lembrei</FontButtonAnswer>
                     </RedButtonAnswer>
-                    <YellowButtonAnswer onClick={() => almostAnswer(almost, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
+                    <YellowButtonAnswer onClick={() => almostAnswer(setFontColor, almost, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
                         <FontButtonAnswer>Quase não lembrei</FontButtonAnswer>
                     </YellowButtonAnswer>
-                    <GreenButtonAnswer onClick={() => rigthAnswer(right, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
+                    <GreenButtonAnswer onClick={() => rigthAnswer(setFontColor, right, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
                         <FontButtonAnswer>Zap!</FontButtonAnswer>
                     </GreenButtonAnswer>
                 </Buttons>
             </BackQuestion>
             <FinishedQuestion stateDisplayFinishedQuestion={stateDisplayFinishedQuestion}>
-                <TextQuestion data-identifier="flashcard-text">Pergunta {(index + 1)}</TextQuestion>
+                <FinalTextQuestion color={fontColor} data-identifier="flashcard-text">Pergunta {(index + 1)}</FinalTextQuestion>
                 <LogoClosedQuestion data-identifier="play-btn" src={imgAnswer} />
             </FinishedQuestion>
         </div>
     )
 }
 
-function rigthAnswer(imgAnswer, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone){
+function rigthAnswer(setFontColor, imgAnswer, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone){
+    setFontColor('#2FBE34');
     setImgAnswer(imgAnswer);
     displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)
 }
 
-function almostAnswer(imgAnswer, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone){
+function almostAnswer(setFontColor, imgAnswer, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone){
+    setFontColor('#FF922E');
     setImgAnswer(imgAnswer);
     displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)
 }
 
-function wrongAnswer(imgAnswer, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone){
+function wrongAnswer(setFontColor, imgAnswer, setImgAnswer, stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone){
+    setFontColor('#FF3030');
     setImgAnswer(imgAnswer);
     displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)
 }
@@ -160,7 +164,7 @@ const TextQuestion = styled.p`
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: #333333;
+  color: '#333333';
 `
 
 const Buttons = styled.div`
@@ -199,5 +203,10 @@ const FontButtonAnswer = styled.p`
     display: flex;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
+    color: '#333333';
+`
+
+const FinalTextQuestion = styled(TextQuestion)`
+    text-decoration: line-through;
+    color: ${props => props.color};
 `
