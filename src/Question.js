@@ -1,22 +1,29 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import logoPlay from './assets/img/seta_play.png' 
 import logoTurn from './assets/img/seta_virar.png' 
 
 
 export default function Question(props, index) {
+    const [displayClosedQuestion, setDisplayClosedQuestion] = useState('flex');
+    const stateDisplayClosedQuestion = {displayClosedQuestion: displayClosedQuestion, setDisplayClosedQuestion: setDisplayClosedQuestion};
+    const [displayFrontQuestion, setDisplayFrontQuestion] = useState('none');
+    const stateDisplayFrontQuestion = {displayFrontQuestion: displayFrontQuestion, setDisplayFrontQuestion: setDisplayFrontQuestion};
+    const [displayBackQuestion, setDisplayBackQuestion] = useState('none');
+    const stateDisplayBackQuestion = {displayBackQuestion: displayBackQuestion, setDisplayBackQuestion: setDisplayBackQuestion};
     return (
         <>
-            <ClosedQuestion>
+            <ClosedQuestion stateDisplayClosedQuestion={stateDisplayClosedQuestion}>
                 <TextQuestion>Pergunta {(index+1)}</TextQuestion>
                 <LogoClosedQuestion src={logoPlay}/>
             </ClosedQuestion>
-            <FrontQuestion>
+            <FrontQuestion stateDisplayFrontQuestion={stateDisplayFrontQuestion}>
                 <TextQuestion>
                     {props.question}
                     <LogoTurnQuestion src={logoTurn}/>
                 </TextQuestion>
             </FrontQuestion>
-            <BackQuestion>
+            <BackQuestion stateDisplayBackQuestion={stateDisplayBackQuestion}>
                 <TextQuestion>
                     {props.answer}
                 </TextQuestion>
@@ -45,7 +52,7 @@ const ClosedQuestion = styled.div`
   padding: 15px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  display: flex;
+  display: ${props => props.stateDisplayClosedQuestion.displayClosedQuestion};
   align-items: center;
   justify-content: space-between;
 `
@@ -71,19 +78,20 @@ const OpenQuestion = styled.div`
   line-height: 22px;
   color: #333333;
   position: relative;
-  
   flex-direction: column;
   justify-content: space-between;
   position: relative;
 `
 
 const FrontQuestion = styled(OpenQuestion)`
-    diplay: flex;
+    display: ${props => props.stateDisplayFrontQuestion.displayFrontQuestion};
 `
 
 const BackQuestion = styled(OpenQuestion)`
-    display: flex;
+    display: ${props => props.stateDisplayBackQuestion.displayBackQuestion};
 `
+
+
 
 const LogoTurnQuestion = styled.img`
     width: 20px;

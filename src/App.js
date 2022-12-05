@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import "./assets/css/reset.css"
 import TopBar from './topBar';
 import ContainerQuestion from './ContainerQuestion';
@@ -7,11 +8,14 @@ import deck from "./cards.js"
 
 
 function App() {
+  const [cardsDone, setCardsDone] = useState(0);
+  const bottomBarData = {cardsDone: cardsDone, setCardsDone: setCardsDone, deckLength: deck.length}
+
   return (
     <ScreenContainer>
       <TopBar />
       <ContainerQuestion deck={deck}/>
-      <BottomBar number={deck.length}/>
+      <BottomBar bottomBarInfo={bottomBarData}/>
     </ScreenContainer>
   );
 }

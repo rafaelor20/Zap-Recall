@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function BottomBar(props) {
     return (
         <BottomBarDiv>
-            <FontBottomBar>0/{props.number} CONCLUÍDOS</FontBottomBar>
+            <FontBottomBar>{props.bottomBarInfo.cardsDone}/{props.bottomBarInfo.deckLength} CONCLUÍDOS</FontBottomBar>
         </BottomBarDiv>
     )
 }
