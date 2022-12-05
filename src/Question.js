@@ -12,19 +12,19 @@ export default function Question(props, index) {
     const [displayBackQuestion, setDisplayBackQuestion] = useState('none');
     const stateDisplayBackQuestion = {displayBackQuestion: displayBackQuestion, setDisplayBackQuestion: setDisplayBackQuestion};
     return (
-        <>
+        <div data-test="flashcard">
             <ClosedQuestion stateDisplayClosedQuestion={stateDisplayClosedQuestion}>
-                <TextQuestion>Pergunta {(index+1)}</TextQuestion>
-                <LogoClosedQuestion src={logoPlay} onClick={()=>displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion)}/>
+                <TextQuestion data-identifier="flashcard-text">Pergunta {(index+1)}</TextQuestion>
+                <LogoClosedQuestion data-identifier="play-btn" src={logoPlay} onClick={()=>displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion)}/>
             </ClosedQuestion>
             <FrontQuestion stateDisplayFrontQuestion={stateDisplayFrontQuestion}>
-                <TextQuestion>
+                <TextQuestion data-identifier="flashcard-text">
                     {props.question}
-                    <LogoTurnQuestion src={logoTurn}/>
+                    <LogoTurnQuestion data-identifier="turn-btn" src={logoTurn} onClick={()=>displayBackCard(stateDisplayFrontQuestion, stateDisplayBackQuestion)}/>
                 </TextQuestion>
             </FrontQuestion>
             <BackQuestion stateDisplayBackQuestion={stateDisplayBackQuestion}>
-                <TextQuestion>
+                <TextQuestion data-identifier="flashcard-text">
                     {props.answer}
                 </TextQuestion>
                 <Buttons>            
@@ -40,7 +40,7 @@ export default function Question(props, index) {
                 </Buttons>
 
             </BackQuestion>
-        </>
+        </div>
     )
 }
 
@@ -49,6 +49,13 @@ function displayFrontCard(stateDisplayClosedQuestion, stateDisplayFrontQuestion)
     setDisplayClosedQuestion('none');
     const setDisplayFrontQuestion = stateDisplayFrontQuestion.setDisplayFrontQuestion;
     setDisplayFrontQuestion('flex');
+}
+
+function displayBackCard(stateDisplayFrontQuestion, stateDisplayBackQuestion){
+    const setDisplayFrontQuestion = stateDisplayFrontQuestion.setDisplayFrontQuestion;
+    setDisplayFrontQuestion('none');
+    const setDisplayBackQuestion = stateDisplayBackQuestion.setDisplayBackQuestion;
+    setDisplayBackQuestion('flex');
 }
 
 const ClosedQuestion = styled.div`
