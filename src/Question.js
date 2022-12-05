@@ -5,6 +5,11 @@ import logoTurn from './assets/img/seta_virar.png'
 
 
 export default function Question(props, index) {
+    console.log(props);
+    const setCardsDone = props.cardsData.setCardsDone;
+    console.log(setCardsDone);
+    const cardsDone = props.cardsData.cardsDone;
+    console.log(cardsDone);
     const [displayClosedQuestion, setDisplayClosedQuestion] = useState('flex');
     const stateDisplayClosedQuestion = { displayClosedQuestion: displayClosedQuestion, setDisplayClosedQuestion: setDisplayClosedQuestion };
     const [displayFrontQuestion, setDisplayFrontQuestion] = useState('none');
@@ -30,13 +35,13 @@ export default function Question(props, index) {
                     {props.answer}
                 </TextQuestion>
                 <Buttons>
-                    <RedButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
+                    <RedButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
                         <FontButtonAnswer>Não lembrei</FontButtonAnswer>
                     </RedButtonAnswer>
-                    <YellowButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
+                    <YellowButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone)}>
                         <FontButtonAnswer>Quase não lembrei</FontButtonAnswer>
                     </YellowButtonAnswer>
-                    <GreenButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion)}>
+                    <GreenButtonAnswer onClick={() => displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone )}>
                         <FontButtonAnswer>Zap!</FontButtonAnswer>
                     </GreenButtonAnswer>
                 </Buttons>
@@ -63,11 +68,12 @@ function displayBackCard(stateDisplayFrontQuestion, stateDisplayBackQuestion) {
     setDisplayBackQuestion('flex');
 }
 
-function displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion) {
+function displayFinishedCard(stateDisplayBackQuestion, stateDisplayFinishedQuestion, cardsDone, setCardsDone) {
     const setDisplayBackQuestion = stateDisplayBackQuestion.setDisplayBackQuestion;
     setDisplayBackQuestion('none');
     const setDisplayFinishedQuestion = stateDisplayFinishedQuestion.setDisplayFinishedQuestion;
     setDisplayFinishedQuestion('flex');
+    setCardsDone((cardsDone + 1));
 }
 
 const SmalldQuestion = styled.div`

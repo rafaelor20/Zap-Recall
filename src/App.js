@@ -9,20 +9,33 @@ import deck from "./cards.js"
 
 function App() {
   const [cardsDone, setCardsDone] = useState(0);
-  const cardsData = {cardsDone: cardsDone, setCardsDone: setCardsDone, deckLength: deck.length}
-  const infoQuestions = {deck: deck, cardsData: cardsData}; 
+  const cardsData = { cardsDone: cardsDone, setCardsDone: setCardsDone, deckLength: deck.length }
+  //const infoQuestions = {deck: deck, cardsData: cardsData};
+  const infoQuestions = transformDeck(deck, cardsData);
 
   return (
     <ScreenContainer>
       <TopBar />
       <ContainerQuestion infoQuestions={infoQuestions}/>
-      <BottomBar cardsData={cardsData}/>
+      <BottomBar cardsData={cardsData} />
     </ScreenContainer>
   );
 }
 
 export default App;
 
+function transformDeck(list, cardsData) {
+  const infoQuestions = { deck: [] };
+  let question;
+  let answer;
+  for (const element of list) {
+    question = element.question;
+    answer = element.answer;
+    infoQuestions.deck.push({ question: question, answer: answer, cardsData: cardsData });
+  }
+  //console.log(infoQuestions);
+  return infoQuestions;
+}
 
 const ScreenContainer = styled.div`
   background-color: #FB6B6B;
