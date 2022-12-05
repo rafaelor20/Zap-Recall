@@ -5,7 +5,7 @@ import Question from './Question';
 export default function ContainerQuestion(props){
     return (
         <Questions>
-            {props.deck.map(Question)}
+            {props.infoQuestions.deck.map(Question)}
         </Questions>
     )
 }

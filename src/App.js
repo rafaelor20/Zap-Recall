@@ -9,13 +9,14 @@ import deck from "./cards.js"
 
 function App() {
   const [cardsDone, setCardsDone] = useState(0);
-  const bottomBarData = {cardsDone: cardsDone, setCardsDone: setCardsDone, deckLength: deck.length}
+  const cardsData = {cardsDone: cardsDone, setCardsDone: setCardsDone, deckLength: deck.length}
+  const infoQuestions = {deck: deck, cardsData: cardsData}; 
 
   return (
     <ScreenContainer>
       <TopBar />
-      <ContainerQuestion deck={deck}/>
-      <BottomBar bottomBarInfo={bottomBarData}/>
+      <ContainerQuestion infoQuestions={infoQuestions}/>
+      <BottomBar cardsData={cardsData}/>
     </ScreenContainer>
   );
 }
