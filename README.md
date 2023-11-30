@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+## Zap-recall
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um simples aplicativo de flashcards construído com React e styled-components. Ele permite que os usuários passem por um baralho de flashcards, cada um com uma pergunta e uma resposta, o objetivo ao usar esta aplicação é testar a sua memória.
 
-## Available Scripts
+## Estrutura do Projeto
 
-In the project directory, you can run:
+O componente principal é `App.js`, que importa e usa os seguintes componentes:
 
-### `npm start`
+- `TopBar`: Esta é a barra de navegação superior.
+- `ContainerQuestion`: Esta é a área de conteúdo principal onde os flashcards são exibidos.
+- `BottomBar`: Esta é a barra de navegação inferior.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+O `App.js` também usa um `deck` de cartas importado de `cards.js`. Cada carta no deck é um objeto com uma `question` e uma `answer`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+O `App.js` também contém uma função `transformDeck` que transforma o deck de cartas em um formato adequado para o componente `ContainerQuestion`.
 
-### `npm test`
+## Estilos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Os estilos são escritos usando `styled-components`. O componente estilizado principal é `ScreenContainer`, que estiliza o container principal do aplicativo.
 
-### `npm run build`
+## Gerenciamento de Estado
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+O aplicativo usa o hook `useState` do React para gerenciamento de estado. O estado `cardsDone` é usado para acompanhar o número de cartas que foram passadas.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Como Executar
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Para executar este projeto, clone o repositório e instale as dependências com `npm install`. Em seguida, inicie o servidor de desenvolvimento com `npm run start`.

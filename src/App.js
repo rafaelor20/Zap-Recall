@@ -33,7 +33,6 @@ function transformDeck(list, cardsData) {
     answer = element.answer;
     infoQuestions.deck.push({ question: question, answer: answer, cardsData: cardsData });
   }
-  //console.log(infoQuestions);
   return infoQuestions;
 }
 
